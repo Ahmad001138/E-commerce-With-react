@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../features/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { Snackbar, Alert } from '@mui/material';
+import Navbar from '../Navbar/Navbar';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -50,12 +51,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#d14200] to-[#f9f4f1] px-4">
+    <>
+    
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#d14200] to-[#f9f4f1] px-4">
       <form
         onSubmit={handleLogin}
-        className="bg-white p-8 sm:p-10 rounded-2xl shadow-xl w-full max-w-md space-y-6"
+        className="bg-white p-8 sm:p-10 rounded-md shadow-xl w-full max-w-md space-y-6"
       >
-        <h2 className="text-3xl font-extrabold text-center text-gray-800">Welcome Back 👋</h2>
+        <h2 className="text-3xl font-extrabold text-center text-gray-800">Welcome </h2>
         <p className="text-center text-gray-500 text-sm">Login to your account</p>
 
         <input
@@ -63,7 +66,7 @@ const Login = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400"
+          className="w-full h-12 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-red-400"
           required
         />
 
@@ -72,7 +75,7 @@ const Login = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400"
+          className="w-full p-3 h-12 border rounded focus:outline-none focus:ring-2 focus:ring-red-400"
           required
         />
 
@@ -103,6 +106,7 @@ const Login = () => {
         </Alert>
       </Snackbar>
     </div>
+    </>
   );
 
 };
