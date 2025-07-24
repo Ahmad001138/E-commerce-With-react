@@ -5,15 +5,15 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './store/store'; // make sure this is exported from your store
 
 import Navbar from './Navbar/Navbar';
-import Shop from './Pages/Shop';
+import Shop from './pages/Shop';
 import Products from './components/Products';
 import Men from './components/Men';
 import Women from './components/Women';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Kids from './components/Kids';
 
-function App() {
+function App() {  
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
 
