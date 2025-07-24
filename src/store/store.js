@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
 });
 
-// ✅ Create persisted reducer
+// ✅ Create persisted reducer  
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // ✅ Configure store with middleware

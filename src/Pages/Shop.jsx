@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeroImage from '../assets/Image.png';
+import Image from '../assets/man.png'
 import { useSelector } from 'react-redux';
 import {
   Drawer, Typography, Box, IconButton, Snackbar, Alert
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cartSlice';
 
@@ -119,8 +118,10 @@ const Shop = () => {
                     <img
                       src={item.image}
                       alt={item.name}
-                      style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 6 }}
+                      style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6 }}
                     />
+                    
+                    
                     <div className="flex flex-col flex-1">
                       <Typography variant="body1">{item.name}</Typography>
                       <Typography variant="body2" color="text.secondary">
