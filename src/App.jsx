@@ -9,8 +9,8 @@ import Shop from './Pages/Shop';
 import Products from './components/Products';
 import Men from './components/Men';
 import Women from './components/Women';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import Kids from './components/Kids';
 
 function App() {
