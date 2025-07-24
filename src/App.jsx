@@ -13,7 +13,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Kids from './components/Kids';
 
-function App() {  
+function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
 
@@ -28,6 +28,10 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/shop"
+          element={isAuthenticated ? <Shop /> : <Navigate to="/login" replace />}
+        />
         <Route
           path="/"
           element={

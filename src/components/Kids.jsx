@@ -1,73 +1,119 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Dialog, IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../features/cartSlice';
 
 const Kids = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
-    useEffect(() => {
-        axios.get('https://fakestoreapi.com/products')
-            .then(res => setProducts(res.data))
-            .catch(err => console.error('Error fetching:', err));
-    }, []);
+  useEffect(() => {
+    axios.get('https://fakestoreapi.com/products')
+      .then(res => setProducts(res.data))
+      .catch(err => console.error('Error fetching:', err));
+  }, []);
 
-    const handleAddToCart = (item) => {
-        if (!isAuthenticated) {
-            alert('Please login to add items to cart');
-            navigate('/login');
-            return;
-        }
-        dispatch(addToCart(item));
-        alert(`${item.title} added to cart ✅`);
-    };
+  const handleAddToCart = (item) => {
+    if (!isAuthenticated) {
+      alert('Please login to add items to cart');
+      navigate('/login');
+      return;
+    }
+    dispatch(addToCart(item));
+    alert(`${item.title} added to cart ✅`);
+  };
 
-    return (
-        <div className="px-4 sm:px-6 py-8 bg-gray-50 min-h-screen">
-            <div className="max-w-4xl mx-auto text-center mb-10">
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">Discover the Latest in Men's Fashion</h1>
-                <p className="text-gray-600 text-sm sm:text-base">
-                    Explore our hand-picked collection of stylish and comfortable men's clothing. Whether you're looking for casual, formal, or trendy outfits – we've got you covered.
-                </p>
+  const handleOpen = (item) => {
+    setSelectedItem(item);
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+    setSelectedItem(null);
+  };
+
+  return (
+    <div className="px-4 sm:px-6 py-10 bg-white min-h-screen">
+      <div className="max-w-4xl mx-auto text-center mb-10">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Fashion</h1>
+        <p className="text-gray-600 text-sm sm:text-base">
+          Explore fun and comfortable clothing for all. Tap a product to see more!
+        </p>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {products.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => handleOpen(item)}
+            className="bg-white rounded-xl shadow-sm overflow-hidden text-center group relative cursor-pointer"
+          >
+            <div className="relative overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-[280px] object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+
+              {/* Overlay product name on image */}
+              <div className="absolute bottom-0 w-full bg-black bg-opacity-40 text-white text-sm font-medium py-1">
+                {item.title}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal / Drawer */}
+      <Dialog open={openModal} onClose={handleClose} maxWidth="md" fullWidth>
+        {selectedItem && (
+          <div className="relative bg-white flex flex-col md:flex-row w-full max-h-[90vh] overflow-y-auto">
+            {/* Close button */}
+            <IconButton
+              onClick={handleClose}
+              className=" top-2  z-10 bg-white"
+              size="small"
+            >
+              <CloseIcon />
+            </IconButton>
+
+            {/* Image section */}
+            <div className="flex-1 p-4 flex justify-center items-center border-b md:border-b-0 md:border-r">
+              <img
+                src={selectedItem.image}
+                alt={selectedItem.title}
+                className="max-h-[300px] object-contain"
+              />
             </div>
 
-            <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {products.map(item => (
-                    <div key={item.id} className="bg-white rounded-lg shadow group overflow-hidden relative">
-                        <div className="relative w-full h-48 bg-white flex items-center justify-center overflow-hidden">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                            />
-                            <Button
-                                variant="outlined"
-                                size="small"
-                                onClick={() => handleAddToCart(item)}
-                                className="!absolute !bottom-15 !left-1/2 !-translate-x-1/2 
-                             !opacity-0 group-hover:!opacity-100 
-                             !border-white !text-white 
-                             hover:!bg-orange-600 hover:!border-orange-600 hover:!text-white"
-                            >
-                                Add to Cart
-                            </Button>
-                        </div>
-                        <div className="p-3 text-center border-t">
-                            <h3 className="text-sm font-medium text-gray-800 truncate">{item.title}</h3>
-                            <p className="text-gray-600 mt-1">Rs. {item.price.toFixed(2)}</p>
-                        </div>
-                    </div>
-                ))}
+            {/* Content section */}
+            <div className="flex-1 p-6 space-y-3">
+              <Typography variant="h6" className="text-lg font-semibold">{selectedItem.title}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                {selectedItem.description}
+              </Typography>
+              <Typography className="text-orange-600 font-bold">Rs. {selectedItem.price.toFixed(2)}</Typography>
+              <button
+                onClick={() => handleAddToCart(selectedItem)}
+                className="mt-4 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg shadow"
+              >
+                Add to Cart
+              </button>
             </div>
-        </div>
-    );
-
+          </div>
+        )}
+      </Dialog>
+    </div>
+  );
 };
 
 export default Kids;
