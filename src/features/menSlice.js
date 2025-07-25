@@ -6,13 +6,13 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 const rootReducer = combineReducers({
   men: menReducer,
-  // other slices
+  
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['men'], // persist only this slice
+  whitelist: ['men'], e
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

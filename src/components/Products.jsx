@@ -52,7 +52,7 @@ const Products = () => {
         ))}
       </div>
 
-      {/* ✅ MODAL FOR DETAILS */}
+     
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box
           sx={{
@@ -71,14 +71,14 @@ const Products = () => {
             maxHeight: '90vh',
           }}
         >
-          {/* ✅ Close Button on the LEFT */}
+         
           <Box sx={{ display: 'flex', alignItems: 'center', px: 2, pt: 2 }}>
             <IconButton onClick={() => setOpen(false)} sx={{ mr: 'auto' }}>
               <CloseIcon />
             </IconButton>
           </Box>
 
-          {/* ✅ Scrollable content */}
+          
           <Box
             sx={{
               overflowY: 'auto',

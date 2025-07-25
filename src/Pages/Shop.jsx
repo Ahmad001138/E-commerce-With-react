@@ -111,7 +111,7 @@ const Shop = () => {
           />
         </div>
 
-        {/* Cart Drawer */}
+        
         <Drawer anchor="right" open={isCartOpen} onClose={handleCartClick}>
           <Box sx={{ width: 350, p: 2, height: '100%', position: 'relative', overflow: 'hidden' }}>
             {/* ✅ Close Icon on Top Left */}
@@ -162,7 +162,7 @@ const Shop = () => {
                     </Box>
                   ))}
 
-                  {/* ✅ Total Price */}
+                 
                   <Box className="pt-2 border-t mt-4">
                     <Typography variant="subtitle1" fontWeight="bold">
                       Total: Rs.{" "}
@@ -170,7 +170,7 @@ const Shop = () => {
                     </Typography>
                   </Box>
 
-                  {/* ✅ Order Form with Error Handling */}
+                  
                   <form onSubmit={handlePlaceOrder} className="space-y-4 mt-4">
                     <div>
                       <input

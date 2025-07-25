@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor } from './store/store'; // make sure this is exported from your store
+import { persistor } from './store/store'; 
 
 import Navbar from './Navbar/Navbar';
 import Shop from './Pages/Shop';
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <PersistGate loading={null} persistor={persistor}>
-      {/* ✅ Conditionally show Navbar */}
+      
       {!hideNavbar && isAuthenticated && <Navbar />}
 
       <Routes>

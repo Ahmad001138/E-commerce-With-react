@@ -64,7 +64,6 @@ const Kids = () => {
                 className="w-full h-[280px] object-contain transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* Overlay product name on image */}
               <div className="absolute bottom-0 w-full bg-black bg-opacity-40 text-white text-sm font-medium py-1">
                 {item.title}
               </div>
@@ -73,11 +72,11 @@ const Kids = () => {
         ))}
       </div>
 
-      {/* Modal / Drawer */}
+      
       <Dialog open={openModal} onClose={handleClose} maxWidth="md" fullWidth>
         {selectedItem && (
           <div className="relative bg-white flex flex-col md:flex-row w-full max-h-[90vh] overflow-y-auto">
-            {/* Close button */}
+            
             <IconButton
               onClick={handleClose}
               className=" top-2  z-10 bg-white"
@@ -86,7 +85,7 @@ const Kids = () => {
               <CloseIcon />
             </IconButton>
 
-            {/* Image section */}
+           
             <div className="flex-1 p-4 flex justify-center items-center border-b md:border-b-0 md:border-r">
               <img
                 src={selectedItem.image}
@@ -95,7 +94,7 @@ const Kids = () => {
               />
             </div>
 
-            {/* Content section */}
+            
             <div className="flex-1 p-6 space-y-3">
               <Typography variant="h6" className="text-lg font-semibold">{selectedItem.title}</Typography>
               <Typography variant="body2" color="text.secondary">

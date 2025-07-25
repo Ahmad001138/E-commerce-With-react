@@ -64,7 +64,7 @@ const Women = () => {
         ))}
       </div>
 
-      {/* Modal */}
+      
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box
           sx={{
@@ -83,14 +83,14 @@ const Women = () => {
             maxHeight: '90vh',
           }}
         >
-          {/* Close Icon */}
+         
           <Box sx={{ display: 'flex', alignItems: 'center', px: 2, pt: 2 }}>
             <IconButton onClick={() => setOpen(false)} sx={{ mr: 'auto' }}>
               <CloseIcon />
             </IconButton>
           </Box>
 
-          {/* Content */}
+        
           <Box sx={{ overflowY: 'auto', px: 3, pb: 3 }}>
             {selectedItem && (
               <>

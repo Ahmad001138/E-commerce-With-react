@@ -88,7 +88,7 @@ function Navbar() {
       return;
     }
 
-    // ✅ Updated Phone Number Validation for exactly 11 digits
+   
     if (phone.length !== 11 || !/^\d+$/.test(phone)) {
       setOrderError("Please enter a valid 11-digit phone number.");
       return;
@@ -101,7 +101,7 @@ function Navbar() {
       }
     }
 
-    // Process the order
+   
     console.log("Order Submitted:");
     console.log("Name:", name);
     console.log("Phone:", phone);
@@ -111,7 +111,7 @@ function Navbar() {
       console.log("Card Number:", cardNumber);
     }
 
-    // Reset and close
+    
     setOrderError(null);
     setOrderSuccess(true);
     e.target.reset();
@@ -223,7 +223,7 @@ function Navbar() {
         </Toolbar>
       </AppBar>
 
-      {/* Left Mobile Menu Drawer */}
+     
       <Drawer anchor="left" open={menuOpen} onClose={toggleMenuDrawer}>
         <Box
           sx={{ width: 250 }}
@@ -276,7 +276,7 @@ function Navbar() {
         </Box>
       </Drawer>
 
-      {/* Right Cart Drawer */}
+      
       <Drawer anchor="right" open={cartOpen} onClose={toggleCartDrawer}>
         <Box sx={{ width: 350, p: 2, height: '100vh', overflowY: 'auto' }}>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -342,7 +342,7 @@ function Navbar() {
                 </Button>
               </Box>
 
-              {/* Order Form with Validation */}
+             
               <Box sx={{ mt: 4 }}>
                 <Typography variant="h6" gutterBottom>
                   Place Order
@@ -366,13 +366,13 @@ function Navbar() {
                       fullWidth
                       required
                       variant="outlined"
-                      // ✅ Updated inputProps for exactly 11 digits
+                      
                       inputProps={{
-                        pattern: "\\d{11}", // Exactly 11 digits
+                        pattern: "\\d{11}",
                         maxLength: 11,
                         minLength: 11,
                       }}
-                      // ✅ Helper text for restriction
+                      
                       helperText="Exactly 11 digits required"
                     />
                   </Box>
@@ -413,7 +413,7 @@ function Navbar() {
                         type="text"
                         fullWidth
                         required
-                        // Change variant from "outlined" to "standard"
+                       
                         variant="standard"
                         inputProps={{
                           inputMode: "numeric",
@@ -438,7 +438,7 @@ function Navbar() {
         </Box>
       </Drawer>
 
-      {/* Snackbar for Success */}
+      
       {orderSuccess && (
         <Snackbar
           open={orderSuccess}
@@ -456,7 +456,7 @@ function Navbar() {
         </Snackbar>
       )}
 
-      {/* Snackbar for Errors */}
+      
       {orderError && (
         <Snackbar
           open={!!orderError}
